@@ -1,3 +1,5 @@
+""" https://github.com/stepansushko1/puzzle """
+
 def horizontal_check(board: list):
     """ Check if board are ready for game by its row. Return True of False
     >>> print(horizontal_check(board = ["**** ****","***1 ****","**  3****",\
@@ -41,7 +43,7 @@ def color_check(board: list):
         "  2  ****"]))
     True
     """
-
+    key = 5
     first_column = 4
     last_column = 8
     first_row = 0
@@ -49,14 +51,14 @@ def color_check(board: list):
     idx = 0
     idx2 = 8
 
-    while first_column != 0:
+    while key != 0:
         lst_of_nums = []
 
         for i in range(first_column, last_column):
             if board[i][idx].isdigit():
                 lst_of_nums.append(board[i][idx])
 
-        for i in range(first_row, last_row):
+        for i in range(first_row, last_row + 1):
             if board[idx2][i].isdigit():
                 lst_of_nums.append(board[idx2][i])
 
@@ -68,6 +70,8 @@ def color_check(board: list):
 
         idx += 1
         idx2 -= 1
+
+        key -= 1
 
         if len(lst_of_nums) != len(set(lst_of_nums)):
             return False
